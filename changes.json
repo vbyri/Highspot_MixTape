@@ -1,0 +1,24 @@
+{
+	"addUpdatePlaylists":[
+	 {
+      "id" : "41",
+      "user_id" : "2",
+      "song_ids" : [
+        "8",
+        "32"
+      ]
+    },
+    {
+      "id" : "2",
+      "user_id" : "3",
+      "song_ids" : [
+        "16",
+        "18"
+       ]
+    }
+	
+	],
+	"removePlaylistIds":[
+	"1"
+	]
+}
