@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.18'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.0.1'
+}
+
+ext.javaMainClass = "Application"
+
+application{
+    mainClassName = javaMainClass
+}
+if (project.hasProperty("args")) {
+    ext.cmdargs = project.getProperty("args")
+} else {
+    ext.cmdargs = ""
+}
+task MixTapes(type: JavaExec) {
+    group = "Execution"
+    description = "Run the main class with JavaExecTask"
+    classpath = sourceSets.main.runtimeClasspath
+    main = javaMainClass
+    args cmdargs.split()
+}
+test {
+    useJUnitPlatform()
+}

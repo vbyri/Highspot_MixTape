@@ -1,0 +1,15 @@
+Run the application as follows from command line
+./gradlew MixTapes -Pargs="c:\\mixtapes\\mixtape-data.json c:\\mixtapes\\changes.json"
+
+This program using fasterxml ObjectMapper to convert the json file to object.
+The ObjectMapper has to construct the entire object tree before returning it.
+It will need whatever amount of memory is required to build the objects in that tree.
+
+For huge files, it would be better to read the file and load into a no sql database like MongoDB or MySQL.
+Or read each object and cache it, so it is readily available for updates.
+
+The changes do not need much change as I am using HashMap, where updates and deletes will take O(1) to retrieve the playlist and modify.
+Initialy it will take O(n) to load the playlist into the HashMap.
+
+Later just replaces the new playlist with the old playlist and writes to a separate file. 
+
